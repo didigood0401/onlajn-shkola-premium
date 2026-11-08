@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Созвездие ребёнка</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Prata&family=Golos+Text:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--night:#0d1033;--deep:#171b4d;--gold:#ffd27a;--coral:#ff7a66;--sky:#8fd3ff;--milk:#fff7e8;--soft:#b9bddf;--ease:cubic-bezier(.22,1,.36,1)}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{font:18px/1.55 "Golos Text",Arial,sans-serif;color:var(--milk);background:var(--night);overflow-x:hidden}
+h1,h2,h3{font-family:Prata,Georgia,serif;font-weight:400;line-height:1.14}
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+.note{font-size:13px;color:var(--soft);text-align:center;padding:9px 16px;border-bottom:1px solid #ffffff1c}
+.btn{display:inline-block;background:var(--gold);color:var(--night);font:700 17px "Golos Text",Arial;padding:16px 28px;border-radius:40px;border:0;cursor:pointer;text-decoration:none;transition:transform .16s var(--ease)}
+.btn:active{transform:scale(.97)}
+.btn:hover{background:#ffdf9c}
+.sky{min-height:calc(100vh - 40px);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.08fr);gap:32px;align-items:center;padding:40px 0}
+h1{font-size:clamp(38px,5.6vw,72px)}
+h1 em{font-style:normal;color:var(--gold)}
+.lead{color:var(--soft);margin:20px 0 26px;max-width:480px}
+.q{min-height:190px}
+.q h3{font-size:24px;margin-bottom:14px}
+.step{font-size:14px;color:var(--gold);margin-bottom:8px}
+.opts{display:flex;flex-wrap:wrap;gap:10px}
+.opt{background:#ffffff12;border:1px solid #ffffff33;color:var(--milk);font:500 16px "Golos Text",Arial;padding:13px 20px;border-radius:30px;cursor:pointer;transition:background .16s,transform .16s var(--ease)}
+.opt:hover{background:#ffffff26}
+.opt:active{transform:scale(.96)}
+.map{position:relative;background:radial-gradient(circle at 60% 40%,#2b2f7d 0,var(--deep) 45%,transparent 75%);border-radius:50%;aspect-ratio:1}
+svg{width:100%;height:100%;display:block;overflow:visible}
+.tw{fill:#fff;animation:tw 3.4s ease-in-out infinite}
+@keyframes tw{50%{opacity:.25}}
+.link{stroke:var(--gold);stroke-width:2;fill:none;stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset .9s var(--ease)}
+.link.on{stroke-dashoffset:0}
+.star{fill:var(--gold);transform-box:fill-box;transform-origin:center;transform:scale(0);transition:transform .55s var(--ease)}
+.star.on{transform:scale(1)}
+.lbl{fill:var(--milk);font:500 19px "Golos Text",Arial;opacity:0;transition:opacity .5s}
+.lbl.on{opacity:1}
+.route{display:none}
+.route.on{display:block;animation:up .6s var(--ease)}
+@keyframes up{from{opacity:0;transform:translateY(14px)}}
+.route form{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}
+.route input{font:inherit;padding:14px 16px;border-radius:14px;border:1px solid #ffffff44;background:#ffffff14;color:#fff;width:100%}
+.route input::placeholder{color:var(--soft)}
+.route .btn{grid-column:1/-1}
+.ok{display:none;grid-column:1/-1;color:var(--gold);font-weight:700}
+.again{background:none;border:0;color:var(--soft);font:inherit;text-decoration:underline;cursor:pointer;margin-top:12px;padding:6px 0}
+section{padding:90px 0}
+.light{background:var(--milk);color:var(--night)}
+h2{font-size:clamp(30px,4vw,50px);margin-bottom:14px}
+.sub{max-width:640px;margin-bottom:38px;opacity:.75}
+.lesson{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+input[type=range]{width:100%;accent-color:var(--coral);height:34px}
+.min{font:400 74px/1 Prata,Georgia,serif;color:var(--coral)}
+.scene h3{font-size:28px;margin:8px 0}
+.report{background:#fff;border-radius:26px;padding:30px;box-shadow:0 24px 60px #0d103322;transform:rotate(-1.5deg)}
+.report small{color:#6a6d8c}
+.bar{height:10px;background:#efe7d6;border-radius:9px;margin:6px 0 16px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--coral);border-radius:9px}
+.trio{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{border:1px solid #ffffff2b;border-radius:26px;padding:28px}
+.card b{font:400 22px Prata,Georgia,serif;display:block;margin-bottom:8px;color:var(--gold)}
+.card p{color:var(--soft)}
+footer{padding:32px 0;color:var(--soft);font-size:14px;border-top:1px solid #ffffff1c}
+:focus-visible{outline:3px solid var(--coral);outline-offset:3px}
+@media(max-width:860px){.sky{grid-template-columns:1fr;min-height:0}.map{max-width:440px;width:100%;margin:0 auto;order:-1}.lesson,.trio{grid-template-columns:1fr}.route form{grid-template-columns:1fr}section{padding:60px 0}.report{transform:none}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="note">Демо-концепт: название, программы и цены условные. Показывает идею сайта и заявки.</div>
+<div class="wrap">
+<div class="sky">
+<div>
+<h1>У каждого ребёнка есть <em>своё созвездие</em> талантов</h1>
+<p class="lead">Ответьте на три вопроса, и мы проложим маршрут обучения именно для Вашего ребёнка. Это займёт 20 секунд.</p>
+<div class="q" id="quiz"></div>
+<div class="route" id="route">
+<h3 id="rTitle" style="font-size:26px;margin-bottom:8px"></h3>
+<p id="rText" style="color:var(--soft)"></p>
+<form id="f"><input required placeholder="Ваше имя" aria-label="Ваше имя"><input required type="tel" placeholder="Телефон" aria-label="Телефон"><button class="btn">Забрать маршрут и пробный урок</button><div class="ok" id="ok" role="status">Демо: маршрут отправлен</div></form>
+<button class="again" id="again" type="button">Пройти заново</button>
+</div>
+</div>
+<div class="map" aria-hidden="true"><svg viewBox="0 0 600 600" id="svg"></svg></div>
+</div>
+</div>
+<section class="light"><div class="wrap lesson">
+<div>
+<h2>Загляните внутрь урока</h2>
+<p class="sub">Родитель не покупает «курс», он хочет понять, что будет с ребёнком. Потяните ползунок.</p>
+<label for="r" style="font-size:14px">Минута занятия</label>
+<input id="r" type="range" min="0" max="3" value="0" step="1">
+<div class="scene"><div class="min" id="sMin"></div><h3 id="sT"></h3><p id="sX"></p></div>
+</div>
+<div class="report">
+<small>Отчёт родителю после урока · демо</small>
+<h3 style="font-size:26px;margin:8px 0 18px">Сегодня Миша разобрался с дробями</h3>
+<small>Внимание на уроке</small><div class="bar"><i style="width:88%"></i></div>
+<small>Новая тема</small><div class="bar"><i style="width:72%"></i></div>
+<small>Уверенность</small><div class="bar"><i style="width:80%"></i></div>
+<p style="font-size:16px">«Сам предложил второй способ решения. Дома хватит одной задачи на 10 минут.»</p>
+</div>
+</div></section>
+<section><div class="wrap">
+<h2>Что меняет такой сайт</h2>
+<p class="sub">Концепт показывает три решения, которые можно собрать на конструкторе Битрикс.</p>
+<div class="trio">
+<div class="card"><b>Заявка становится игрой</b><p>Вместо формы «оставьте телефон» родитель получает личный маршрут и охотнее оставляет контакт.</p></div>
+<div class="card"><b>Услуга становится понятной</b><p>Короткий текст, живой урок и пример отчёта снимают главные сомнения до звонка.</p></div>
+<div class="card"><b>Запросы ведут на страницы</b><p>Каждый предмет и возраст получает свою страницу под семантическое ядро, с целями в Метрике.</p></div>
+</div>
+</div></section>
+<div class="wrap"><footer>Демо-концепт. Данные условные.</footer></div>
+<script>
+var Q=[{k:'Сколько лет ребёнку?',o:['7-9 лет','10-12 лет','13-15 лет']},
+{k:'Что ему нравится больше всего?',o:['Считать и решать','Создавать своё','Общаться и рассказывать']},
+{k:'Чего хотите Вы?',o:['Подтянуть школу','Раскрыть талант','Занять с пользой']}];
+var P=[[120,430],[250,250],[400,330],[500,130]];
+var R={'Считать и решать':['Логика и математика','от задач-головоломок до уверенной школьной программы'],'Создавать своё':['Программирование и дизайн','от первой игры до собственного проекта'],'Общаться и рассказывать':['Английский и публичная речь','от диалогов до выступления перед группой']};
+var svg=document.getElementById('svg'),NS='http://www.w3.org/2000/svg',html='';
+for(var i=0;i<70;i++){html+='<circle class="tw" cx="'+Math.round(Math.random()*600)+'" cy="'+Math.round(Math.random()*600)+'" r="'+(Math.random()*1.5+.5).toFixed(1)+'" style="animation-delay:'+(Math.random()*3).toFixed(1)+'s"/>'}
+for(i=0;i<3;i++){html+='<path class="link" pathLength="1" d="M'+P[i]+' Q'+((P[i][0]+P[i+1][0])/2+30)+' '+((P[i][1]+P[i+1][1])/2-40)+' '+P[i+1]+'"/>'}
+P.forEach(function(p,n){html+='<path class="star" d="M'+p[0]+' '+(p[1]-20)+'L'+(p[0]+5)+' '+(p[1]-5)+'L'+(p[0]+20)+' '+p[1]+'L'+(p[0]+5)+' '+(p[1]+5)+'L'+p[0]+' '+(p[1]+20)+'L'+(p[0]-5)+' '+(p[1]+5)+'L'+(p[0]-20)+' '+p[1]+'L'+(p[0]-5)+' '+(p[1]-5)+'Z"/><text class="lbl" x="'+(p[0]+(n==3?-30:26))+'" y="'+(p[1]+(n==3?46:-16))+'" text-anchor="'+(n==3?'end':'start')+'"></text>'});
+svg.innerHTML=html;
+var stars=svg.querySelectorAll('.star'),lbls=svg.querySelectorAll('.lbl'),links=svg.querySelectorAll('.link'),a=[],quiz=document.getElementById('quiz'),route=document.getElementById('route');
+function draw(){var q=Q[a.length];quiz.innerHTML='<div class="step">Вопрос '+(a.length+1)+' из 3</div><h3>'+q.k+'</h3><div class="opts"></div>';var b=quiz.querySelector('.opts');q.o.forEach(function(t){var e=document.createElement('button');e.className='opt';e.type='button';e.textContent=t;e.onclick=function(){pick(t)};b.appendChild(e)})}
+function pick(t){var n=a.length;a.push(t);stars[n].classList.add('on');lbls[n].textContent=t;lbls[n].classList.add('on');if(n>0)links[n-1].classList.add('on');if(a.length<3){draw();return}
+setTimeout(function(){links[2].classList.add('on');stars[3].classList.add('on');lbls[3].textContent='Маршрут готов';lbls[3].classList.add('on')},350);
+var r=R[a[1]];quiz.style.display='none';route.classList.add('on');rTitle.textContent=r[0];rText.textContent='Для ребёнка '+a[0]+': '+r[1]+'. Первый урок бесплатно, цель: '+a[2].toLowerCase()+'.'}
+function reset(){a=[];[].forEach.call(svg.querySelectorAll('.on'),function(e){e.classList.remove('on')});route.classList.remove('on');quiz.style.display='';ok.style.display='none';draw()}
+document.getElementById('again').onclick=reset;draw();
+document.getElementById('f').onsubmit=function(e){e.preventDefault();ok.style.display='block'};
+var S=[['0-5','Включаемся','Короткая игра-разминка: ребёнок сразу говорит и думает, а не слушает.'],['5-25','Открываем сами','Педагог задаёт загадку, и правило дети выводят своими словами.'],['25-40','Пробуем','Работа в паре над задачей, ошибки разбираем без оценок.'],['40-45','Фиксируем успех','Ребёнок называет, что получилось, а родитель получает отчёт.']];
+var rg=document.getElementById('r');function sc(){var s=S[+rg.value];sMin.textContent=s[0];sT.textContent=s[1];sX.textContent=s[2]}rg.oninput=sc;sc();
+</script>
+</body>
+</html>
